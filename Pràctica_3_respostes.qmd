@@ -19,7 +19,7 @@ Rendering:
 knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
 ```
 
-```{r, echo=FALSE, eval=FALSE}
+```{r, echo=FALSE, eval=TRUE}
 library(tidyverse)#Poned aquí todas las librerías que utilicéis
 library(readr)
 library(dplyr)
@@ -39,9 +39,10 @@ Organiza el conjunto de datos en una matriz, donde cada fila corresponda a un pr
 Eliminamos la primera columna, pues los productos quedan identificados ya por su posición de fila. Así reducimos el tamaño de los datos. Además, lo pasamos a formato matriz con una función específica. A continuación, le asignamos un color diferente a cada producto y creamos la matriz de dispersión entre las tres variables.
 
 ```{r}
+
 datos_empresa <- read_csv("datos_empresa.csv")
 
-data <- datos_empresa %>% select(Ventas,Publicidad,Satisfaccion_cliente)
+data<- datos_empresa %>% select(Ventas,Publicidad,Satisfaccion_cliente)
 d <- data %>% as.matrix() 
 m_disp=pairs(d,col=sample(colors(),15),pch=18)
 
