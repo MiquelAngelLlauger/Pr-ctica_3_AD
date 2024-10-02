@@ -13,14 +13,15 @@ Rendering:
 
 **Miquel Àngel Llauger Suau**:
 
-**Enlace al repositorio de Githhub**:
+\*https://github.com/MiquelAngelLlauger/Pr-ctica_3_AD.git\*\*:
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
 ```
 
 ```{r, echo=FALSE, eval=FALSE}
-library(tidyverse) #Poned aquí todas las librerías que utilicéis
+library(tidyverse)#Poned aquí todas las librerías que utilicéis
+library(readr)
 ```
 
 ## Enunciado y datos
@@ -32,6 +33,13 @@ Una empresa quiere analizar si existe relación entre las ventas de sus producto
 Organiza el conjunto de datos en una matriz, donde cada fila corresponda a un producto y cada columna a una variable, siendo la variable "Producto" únicamente un identificador. A continuación, presenta la matriz de dispersión entre las variables, utilizando puntos coloreados según el tipo de marca (consulta la sección 2.4.2 de los apuntes). Comenta los resultados obtenidos, prestando especial atención a lo que indican los valores de las correlaciones entre las variables.
 
 #### Respuesta
+
+```{r}
+datos_empresa <- read_csv("datos_empresa.csv")
+View(datos_empresa)
+
+
+```
 
 ### Apartado 2
 
