@@ -22,6 +22,7 @@ knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
 ```{r, echo=FALSE, eval=FALSE}
 library(tidyverse)#Poned aquí todas las librerías que utilicéis
 library(readr)
+library(dplyr)
 ```
 
 ## Enunciado y datos
@@ -34,10 +35,14 @@ Organiza el conjunto de datos en una matriz, donde cada fila corresponda a un pr
 
 #### Respuesta
 
+Eliminamos la primera columna, pues los productos quedan identificados ya por su posición de fila. Así reducimos el tamaño de los datos. Además, lo pasamos a formato matriz con una función específica. A continuación, le asignamos un color diferente a cada producto y creamos la matriz de dispersión entre las tres variables.
+
 ```{r}
 datos_empresa <- read_csv("datos_empresa.csv")
-View(datos_empresa)
 
+data <- datos_empresa %>% select(Ventas,Publicidad,Satisfaccion_cliente)
+d <- data %>% as.matrix() 
+m_disp=pairs(d,col=sample(colors(),15),pch=18)
 
 ```
 
@@ -47,11 +52,25 @@ Calcula la matriz de datos centrada y el vector de medias con las formas matrici
 
 #### Respuesta
 
+Usando una función de la librería 'dyplr', calculamos el vector de medias y conseguimos la matriz centrada. El vector de medias lo podemos interpretar como el promedio de, respectivamente, los miles de euros en ventas, los miles de euros invertidos en publicidad y la satisfacción del cliente de los productos de la empresa. El promedio de beneficio de cada producto es pues, positivo: hay más ingresos por ventas que dinero invertido en publicidad en promedio. Además, la satisfacción media del cliente está por encima del 8/10.
+
+```{r}
+vec<-data %>% summarise(across(everything(),mean))
+vec
+data_mean<-matrix(rep(vec,each=15),nrow=15,byrow = FALSE)
+data_mean_numeric<-matrix(as.numeric(data_mean),nrow = nrow(data_mean),ncol = ncol(data_mean))
+data_centrada<-d-data_mean_numeric
+data_centrada
+
+```
+
 ### Apartado 3
 
 Calcula la matriz de covarianzas y la matriz de correlaciones utilizando las formas matriciales vistas en la clase de teoría. A continuación, interpreta los resultados obtenidos para ambas matrices en el contexto del problema.
 
 #### Respuesta
+
+Calcularemos la matriz de covarianza usando las formas matriciales vistas en clase. 
 
 ### Apartado 4
 
