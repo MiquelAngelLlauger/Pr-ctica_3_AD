@@ -23,6 +23,7 @@ knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
 library(tidyverse)#Poned aquí todas las librerías que utilicéis
 library(readr)
 library(dplyr)
+library(ggcorrplot)
 ```
 
 ## Enunciado y datos
@@ -99,10 +100,23 @@ R
 Calcula la matriz de correlaciones muestrales con la forma matricial estudiada en clase de teoría y revisa que lo has hecho bien con la función disponible de `R`. Interpreta los resultados obtenidos.
 
 #### Respuesta
+Usaremos la funcion de R 'cor()' para comparar los resultados y, ver si hemos calculado bien la matriz de correlaciones.
+```{r}
+C<-cor(data)
+C
+```
+Efectivamente, las matrices coinciden. Hemos calculado bien la matriz de correlaciones y observamos que, las 3 variables estan fuertemente correlacionadas, puesto que el coeficiente de correlacion oscila entre -1 y 1. Estan muy lejos de ser independientes. Esto ya se observaba en la matriz de dispersión, en donde los datos parecían seguir una monotonía creciente con respecto las dos variables. Cuando una variable crece, el resto también crece. Observemos el gráfico:
+```{r}
+
+data %>% select(1:3) %>% na.omit(.) %>% cor(.) %>% ggcorrplot(., hc.order = TRUE,                                                   method="square",
+type = "lower", 
+colors = c("blue","white","red"))
+```
 
 ### Apartado 5
 
 Calcula la varianza generalizada y la variación total del conjunto de datos numéricos que estamos estudiando. Interpreta los resultados obtenidos.
+
 
 #### Respuesta
 

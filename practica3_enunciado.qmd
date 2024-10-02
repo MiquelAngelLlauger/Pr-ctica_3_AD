@@ -45,6 +45,7 @@ Calcula la matriz de covarianzas y la matriz de correlaciones utilizando las for
 
 #### Respuesta
 
+
 ### Apartado 4
 
 Calcula la matriz de correlaciones muestrales con la forma matricial estudiada en clase de teoría y revisa que lo has hecho bien con la función disponible de `R`. Interpreta los resultados obtenidos.
